@@ -1,14 +1,13 @@
 <div class="max-h-screen flex">
     <div class="block">
         <div class="block">
-            <p>Name : {{myDetails.firstName}} {{myDetails.lastName}}</p>
-            <p>Age : {{myDetails.age}}</p>
-            <p>Age : {{myDetails.age}}</p>
+            <p>Name : {{myDetails?.firstName}} {{myDetails?.lastName}}</p>
+            <p>Age : {{myDetails?.age}}</p>
             <p>Address</p>
             <ul>
-                <li>Locality: {{myDetails.address.vill}}</li>
-                <li>PIN: {{myDetails.address.po}}</li>
-                <li>State: {{myDetails.address.state}}</li>
+                <li>Locality: {{myDetails?.address?.vill}}</li>
+                <li>PIN: {{myDetails?.address?.po}}</li>
+                <li>State: {{myDetails?.address?.state}}</li>
             </ul>
         </div>
         <button type="button" (click)="updateProfile()"
