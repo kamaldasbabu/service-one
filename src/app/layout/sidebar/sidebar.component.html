@@ -1,29 +1,26 @@
-  <!-- Left Navigation -->
-  <aside class="">
-    <nav class="space-y-4">
-      <a href="#" class="block text-gray-700 hover:text-blue-600">Dashboard</a>
-      <a href="#" class="block text-gray-700 hover:text-blue-600">Users</a>
-      <a href="#" class="block text-gray-700 hover:text-blue-600">Settings</a>
-      <a href="#" class="block text-gray-700 hover:text-blue-600">Reports</a>
-      <a href="#" class="block text-gray-700 hover:text-blue-600">Dashboard</a>
-      <a href="#" class="block text-gray-700 hover:text-blue-600">Users</a>
-      <a href="#" class="block text-gray-700 hover:text-blue-600">Settings</a>
-      <a href="#" class="block text-gray-700 hover:text-blue-600">Reports</a>
-      <a href="#" class="block text-gray-700 hover:text-blue-600">Dashboard</a>
-      <a href="#" class="block text-gray-700 hover:text-blue-600">Users</a>
-      <a href="#" class="block text-gray-700 hover:text-blue-600">Settings</a>
-      <a href="#" class="block text-gray-700 hover:text-blue-600">Reports</a>
-      <a href="#" class="block text-gray-700 hover:text-blue-600">Dashboard</a>
-      <a href="#" class="block text-gray-700 hover:text-blue-600">Users</a>
-      <a href="#" class="block text-gray-700 hover:text-blue-600">Settings</a>
-      <a href="#" class="block text-gray-700 hover:text-blue-600">Reports</a>
-      <a href="#" class="block text-gray-700 hover:text-blue-600">Dashboard</a>
-      <a href="#" class="block text-gray-700 hover:text-blue-600">Users</a>
-      <a href="#" class="block text-gray-700 hover:text-blue-600">Settings</a>
-      <a href="#" class="block text-gray-700 hover:text-blue-600">Reports</a>
-      <a href="#" class="block text-gray-700 hover:text-blue-600">Dashboard</a>
-      <a href="#" class="block text-gray-700 hover:text-blue-600">Users</a>
-      <a href="#" class="block text-gray-700 hover:text-blue-600">Settings</a>
-      <a href="#" class="block text-gray-700 hover:text-blue-600">Reports</a>
-    </nav>
-  </aside>
+<aside class="w-64 min-w-64 max-w-64 bg-cyan-600 text-white h-full overflow-hidden">
+  <nav class="flex flex-col space-y-2 p-4">
+    <a
+      routerLink="/dashboard"
+      routerLinkActive="bg-cyan-700 text-white font-semibold"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="px-4 py-2 rounded-lg hover:bg-cyan-500 transition-all duration-200 whitespace-nowrap"
+    >
+      Dashboard
+    </a>
+    <a
+      routerLink="/profile"
+      routerLinkActive="bg-cyan-700 text-white font-semibold"
+      class="px-4 py-2 rounded-lg hover:bg-cyan-500 transition-all duration-200 whitespace-nowrap"
+    >
+      Profile
+    </a>
+    <a
+      routerLink="/services"
+      routerLinkActive="bg-cyan-700 text-white font-semibold"
+      class="px-4 py-2 rounded-lg hover:bg-cyan-500 transition-all duration-200 whitespace-nowrap"
+    >
+      Services
+    </a>
+  </nav>
+</aside>

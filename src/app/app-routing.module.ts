@@ -10,6 +10,14 @@ const routes: Routes = [
   { path: "", component: SingInComponent },
   { path: "sign-in", component: SingInComponent },
   { path: "sign-up", component: SingUpComponent },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
+  }
 ];
 
 @NgModule({
