@@ -8,7 +8,8 @@ import { SaveForm } from '../models/save-form';
 })
 export class BackendService {
 
-  public apiUrl: string = "https://jsonplaceholder.typicode.com/"
+  // public apiUrl: string = "https://jsonplaceholder.typicode.com/";
+  public apiUrl: string = "http://localhost:8080/api";
   constructor(private http: HttpClient) { }
 
   /**
@@ -17,8 +18,11 @@ export class BackendService {
    * @returns 
    */
 
-  public saveData(formData: SaveForm): Observable<any> {
-    return this.http.post(this.apiUrl, formData);
+  // public saveData(formData: SaveForm): Observable<any> {
+  //   return this.http.post(this.apiUrl, formData);
+  // }
+  public saveData(url: string, formData: any): Observable<any> {
+    return this.http.post(this.apiUrl+url, formData);
   }
 
   /**

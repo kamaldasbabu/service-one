@@ -1,6 +1,10 @@
+import { Router } from '@angular/router';
+import { AuthService } from './../../services/auth.service';
 import { BackendService } from './../../services/backend.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SaveForm } from '../../models/save-form';
+import { IUser } from '../../models/user-details';
 
 @Component({
   selector: 'app-sing-in',
@@ -12,9 +16,11 @@ export class SingInComponent implements OnInit {
 
   public signInForm: FormGroup;
 
-  constructor(private backendService: BackendService, private fb: FormBuilder) {
+  constructor(private _router: Router,
+    private _authService: AuthService,
+    private fb: FormBuilder) {
     this.signInForm = this.fb.group({
-      username: ['', Validators.required],
+      userName: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
@@ -22,19 +28,37 @@ export class SingInComponent implements OnInit {
   onSubmit() {
     if (this.signInForm.valid) {
       console.log('Form Data:', this.signInForm.value);
+      this._authService
+        .singIn(this.signInForm.getRawValue())
+        .subscribe((user: IUser) => {
+          console.log("user", user);
+          this._router.navigate(['/profile'], { queryParams: { id: 10 } });
+
+        })
+
+
     }
   }
 
   async ngOnInit() {
-    console.log("jjjjjjjjjjjjjjjjjjjjjjjjjjjj");
 
-    this.backendService.getData("/posts").subscribe((data: any) => {
-      console.log("data", data);
+    // this.backendService.getData("/health").subscribe((data: any) => {
+    //   console.log("data", data);
 
-    });
-    const resullt = await this.backendService.getDataPromise("/posts");
-    console.log("result", resullt)
-    
+    // });
+
+
+    // this.backendService.saveData("/auth/register", {
+    //   "password": "1234",
+    //   "userName": "user",
+    //   "name": "user1"}
+    // ).subscribe((data: any) => {
+    //   console.log("data", data);
+
+    // });
+    // const resullt = await this.backendService.getDataPromise("/posts");
+    // console.log("result", resullt)
+
   }
 
 }

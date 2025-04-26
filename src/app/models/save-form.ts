@@ -1,5 +1,5 @@
 export interface SaveForm {
-    formName: string;
+    endPoint: string;
     formData: Object;
     action: string
     createdBy: string | number

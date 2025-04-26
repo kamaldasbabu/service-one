@@ -1,5 +1,8 @@
+import { Router } from '@angular/router';
+import { AuthService } from './../../services/auth.service';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IUser } from '../../models/user-details';
 
 @Component({
   selector: 'app-sing-up',
@@ -11,10 +14,12 @@ export class SingUpComponent {
 
   public signUpForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private _authService: AuthService,
+    private _router: Router
+  ) {
     this.signUpForm = this.fb.group({
       name: ['', Validators.required],
-      email: ['', Validators.required],
+      userName: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
@@ -22,6 +27,12 @@ export class SingUpComponent {
   onSubmit(): void {
     if (this.signUpForm.valid) {
       console.log('Form Data:', this.signUpForm.value);
+      this._authService.signUp(this.signUpForm.getRawValue()).subscribe((users: IUser) => {
+
+        console.log("users", users);
+        
+        this._router.navigate(['/profile'], { queryParams: { id: 10 } });
+      })
     }
   }
 
