@@ -10,7 +10,8 @@ export class AuthService {
 
   constructor(private _backendService: BackendService) { };
 
-  public userDetails = new Subject<IUser>();
+  public userDetails: IUser | Object = {};
+  public token : string | undefined = undefined;
   public singIn(userCredintial: Record<string, string>): Observable<any> {
     return this._backendService
       .saveData("/auth/login", userCredintial);

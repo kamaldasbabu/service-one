@@ -17,7 +17,11 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
-  }
+  },
+  {
+    path: 'services',
+    loadChildren: () => import('./service-one-services/service-one-services-routing.module').then(m => m.ServiceOneServicesRoutingModule)
+  },
 ];
 
 @NgModule({

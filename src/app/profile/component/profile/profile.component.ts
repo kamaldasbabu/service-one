@@ -1,6 +1,5 @@
 import { DataStoreService } from './../../../services/data-store.service';
-import { BackendService } from './../../../services/backend.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -12,19 +11,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ProfileComponent {
 
-  public myDetails = {
-    firstName: "KAMAL",
-    lastName: "Ruidas",
-    age: 30,
-    address: {
-      vill: "Shyamsundarpur",
-      po: "713141",
-      state: "WB"
-    }
-  }
+  public hasContent: boolean = false;
   public userForm: FormGroup;
 
   constructor(private router: Router, private _dataStoreService: DataStoreService,
+    private route: ActivatedRoute,
   private fb: FormBuilder) {
     this.userForm = this.fb.group({
       firstName: ['KAMAL', Validators.required],
@@ -46,16 +37,23 @@ export class ProfileComponent {
       console.log('Form is invalid');
     }
 
-    console.log("update profile");
-    this._dataStoreService.myDetails.next(this.myDetails);
+  
     this.router.navigate(['/profile/update']);
   }
 
   public updateProfile(): void {
-
     console.log("update profile");
-    this._dataStoreService.myDetails.next(this.myDetails);
-    this.router.navigate(['/profile/update']);
+    this.router.navigate(['update'], { relativeTo: this.route });
   }
+
+ 
+
+onActivate() {
+  this.hasContent = true;
+}
+
+onDeactivate() {
+  this.hasContent = false;
+}
 
 }

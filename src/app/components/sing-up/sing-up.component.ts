@@ -3,7 +3,6 @@ import { AuthService } from './../../services/auth.service';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IUser } from '../../models/user-details';
-
 @Component({
   selector: 'app-sing-up',
   standalone: false,

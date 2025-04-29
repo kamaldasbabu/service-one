@@ -1,4 +1,4 @@
-<div class="max-h-screen flex items-center justify-center">
+<!-- <div class="max-h-screen flex items-center justify-center">
     <div class="bg-white p-8 rounded-2xl shadow-md w-full max-w-md">
       <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Sign In</h2>
       <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
@@ -6,6 +6,16 @@
           <label class="block text-gray-600 mb-1" for="userName">Username</label>
           <input type="text" id="userName" formControlName="userName" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
         </div>
+
+        <mat-form-field appearance="outline" class="w-full mb-4">
+          <mat-label>Username</mat-label>
+          <input matInput type="text" formControlName="userName" placeholder="Username"/>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-full mb-4">
+          <mat-label>Username</mat-label>
+          <input matInput type="password" formControlName="password" placeholder="Password"/>
+        </mat-form-field>
+
         <div class="mb-6">
           <label class="block text-gray-600 mb-1" for="password">Password</label>
           <input  type="password" id="password" formControlName="password" class="w-full p-2 border border-gray-300 rounded" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
@@ -15,6 +25,43 @@
       <p class="mt-4 text-sm text-gray-600 text-center">
         Don’t have an account?
         <a routerLink="/sign-up"  class="text-blue-600 hover:underline">Sign up</a>
+      </p>
+    </div>
+  </div>
+   -->
+
+
+   <div class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="bg-white p-8 rounded-2xl shadow-md w-full max-w-md">
+      <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Sign In</h2>
+  
+      <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" class="no-tailwind space-y-6">
+  
+        <!-- <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="userName" placeholder="Enter your username" type="text" />
+        </mat-form-field> -->
+
+
+        <mat-form-field appearance="outline" class="w-full mb-6">
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="userName" type="text">
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password" placeholder="Enter your password" type="password" />
+        </mat-form-field>
+  
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-200">
+          Sign In
+        </button>
+  
+      </form>
+  
+      <p class="mt-4 text-sm text-gray-600 text-center">
+        Don’t have an account?
+        <a routerLink="/sign-up" class="text-blue-600 hover:underline">Sign up</a>
       </p>
     </div>
   </div>

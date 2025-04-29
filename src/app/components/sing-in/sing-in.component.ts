@@ -32,7 +32,11 @@ export class SingInComponent implements OnInit {
         .singIn(this.signInForm.getRawValue())
         .subscribe((user: IUser) => {
           console.log("user", user);
-          this._router.navigate(['/profile'], { queryParams: { id: 10 } });
+
+          this._authService.userDetails = { userName: this.signInForm.getRawValue()["userName"], ...user };
+          this._authService.userDetails = { ...this._authService.userDetails, ...user };
+          this._authService.token = user.token;
+          this._router.navigate(['/profile'], { queryParams: { userName: this.signInForm.getRawValue()["userName"] } });
 
         })
 

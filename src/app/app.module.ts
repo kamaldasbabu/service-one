@@ -1,3 +1,4 @@
+import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -6,7 +7,11 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient } from '@angular/common/http';
+import { MaterialModule } from './material/material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ServiceOneServicesModule } from './service-one-services/service-one-services.module';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -20,9 +25,13 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MaterialModule,
+    BrowserAnimationsModule,
+    ServiceOneServicesModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [AuthService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true, }],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

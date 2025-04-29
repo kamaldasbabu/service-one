@@ -2,18 +2,27 @@
     <div class="bg-white p-8 rounded-2xl shadow-md w-full max-w-md">
       <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Create Account</h2>
       <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-        <div class="mb-4">
-          <label class="block text-gray-600 mb-1" for="name">Name</label>
-          <input type="text" formControlName="name" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
-        </div>
-        <div class="mb-4">
+
+        <mat-form-field appearance="outline" class="w-full mb-4">
+          <mat-label>Name</mat-label>
+          <input matInput type="input" formControlName="name" placeholder="John Doe" />
+        </mat-form-field>
+        <!-- <div class="mb-4">
           <label class="block text-gray-600 mb-1" for="email">Username</label>
           <input type="email" formControlName="userName" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
-        </div>
-        <div class="mb-6">
-          <label class="block text-gray-600 mb-1" for="password">Password</label>
-          <input type="password" formControlName="password" id="password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
-        </div>
+        </div> -->
+
+        <mat-form-field appearance="outline" class="w-full mb-4">
+          <mat-label>Username</mat-label>
+          <input matInput type="email" formControlName="userName" placeholder="Username"/>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full mb-4">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" placeholder="Password"/>
+        </mat-form-field>
+        
+
         <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-200">Sign Up</button>
       </form>
       <p class="mt-4 text-sm text-gray-600 text-center">
