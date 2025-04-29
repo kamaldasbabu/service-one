@@ -36,7 +36,7 @@ export class SingInComponent implements OnInit {
           this._authService.userDetails = { userName: this.signInForm.getRawValue()["userName"], ...user };
           this._authService.userDetails = { ...this._authService.userDetails, ...user };
           this._authService.token = user.token;
-          this._router.navigate(['/profile'], { queryParams: { userName: this.signInForm.getRawValue()["userName"] } });
+          this._router.navigate(['/profile'], { queryParams: { id: this.signInForm.getRawValue()["userName"] } });
 
         })
 

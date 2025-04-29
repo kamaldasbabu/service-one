@@ -6,7 +6,7 @@ import { ServiceViewComponent } from './components/service-view/service-view.com
 const routes: Routes = [{
   path: '', component: ServiceListComponent,
   children: [{
-    path: 'view', component: ServiceViewComponent
+    path: 'view/:name', component: ServiceViewComponent
   }]
 
 },

@@ -12,6 +12,7 @@ import { MaterialModule } from './material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceOneServicesModule } from './service-one-services/service-one-services.module';
 import { AuthService } from './services/auth.service';
+import { ToastComponent } from './shared/toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { AuthService } from './services/auth.service';
     routingComponents,
     HeaderComponent,
     FooterComponent,
+    ToastComponent
   ],
   imports: [
     BrowserModule,

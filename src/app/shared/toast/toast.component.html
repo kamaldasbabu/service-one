@@ -1,0 +1,9 @@
+<div class="fixed top-4 right-4 space-y-2 z-50">
+    <div *ngFor="let toast of toasts" [ngClass]="{
+      'bg-green-500': toast.type === 'success',
+      'bg-red-500': toast.type === 'error'
+    }" class="text-white px-4 py-2 rounded shadow">
+      {{ toast.message }}
+    </div>
+  </div>
+  

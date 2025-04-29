@@ -1,6 +1,7 @@
+import { BackendService } from './../../../services/backend.service';
 import { DataStoreService } from './../../../services/data-store.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -9,14 +10,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
 
   public hasContent: boolean = false;
   public userForm: FormGroup;
 
   constructor(private router: Router, private _dataStoreService: DataStoreService,
+    private _backendService: BackendService,
     private route: ActivatedRoute,
-  private fb: FormBuilder) {
+    private fb: FormBuilder) {
     this.userForm = this.fb.group({
       firstName: ['KAMAL', Validators.required],
       lastName: ['Ruidas', Validators.required],
@@ -30,6 +32,13 @@ export class ProfileComponent {
     this.userForm.disable();
   }
 
+  ngOnInit(): void {
+    this._backendService.getData("/users").subscribe((data: any) => {
+      console.log("data", data);
+
+    })
+  }
+
   onSubmit(): void {
     if (this.userForm.valid) {
       console.log(this.userForm.value);
@@ -37,7 +46,7 @@ export class ProfileComponent {
       console.log('Form is invalid');
     }
 
-  
+
     this.router.navigate(['/profile/update']);
   }
 
@@ -46,14 +55,14 @@ export class ProfileComponent {
     this.router.navigate(['update'], { relativeTo: this.route });
   }
 
- 
 
-onActivate() {
-  this.hasContent = true;
-}
 
-onDeactivate() {
-  this.hasContent = false;
-}
+  onActivate() {
+    this.hasContent = true;
+  }
+
+  onDeactivate() {
+    this.hasContent = false;
+  }
 
 }

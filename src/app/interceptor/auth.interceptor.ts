@@ -1,55 +1,53 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
+import {
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+  HttpErrorResponse
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Injectable()
-
 export class AuthInterceptor implements HttpInterceptor {
 
-
-  constructor(private _authService: AuthService) { }
-  
+  constructor(
+    private _authService: AuthService,
+    private _router: Router
+  ) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    const skipUrls = ['/sign-in', '/sign-up'];
-
-    // Check if the request URL matches the skip list
+    const skipUrls = ['/login', '/register'];
     const shouldSkip = skipUrls.some(url => req.url.includes(url));
 
     if (shouldSkip) {
-      // If request is sign-in or sign-up, forward it without token
       return next.handle(req);
     }
-    // Otherwise, clone request and add Authorization header
-    // const token = localStorage.getItem('token'); // or wherever you store token
+
     const token = this._authService.token;
 
-    console.log("this._authService.token", this._authService.token);
-    
-
+    let authReq = req;
     if (token) {
-      const authReq = req.clone({
+      authReq = req.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`
         }
       });
-      return next.handle(authReq);
-    } else {
-      return next.handle(req);
     }
+
+    return next.handle(authReq).pipe(
+      catchError((error: HttpErrorResponse) => {
+        // Check for unauthorized status
+        if (error.status === 403) {
+          console.warn('Unauthorized or forbidden, redirecting to login...');
+          this._router.navigate(['/sign-in']);
+        }
+        return throwError(() => error);
+      })
+    );
   }
-
 }
-
-
-// export const authInterceptor: HttpInterceptorFn = (req, next) => {
-
-
-
-
-
-
-//   return next(req);
-// };

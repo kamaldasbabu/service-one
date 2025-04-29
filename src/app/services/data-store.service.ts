@@ -15,6 +15,8 @@ export class DataStoreService {
 
   public myDetails = new Subject<any>();
 
+  public serviceList: any[] = [];
+
 
 
 

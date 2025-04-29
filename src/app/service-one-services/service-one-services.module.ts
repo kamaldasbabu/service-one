@@ -6,12 +6,15 @@ import { ServiceViewComponent } from './components/service-view/service-view.com
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 import { RouterModule } from '@angular/router';
+import { ServiceCardComponent } from './components/service-card/service-card.component';
+
 
 
 @NgModule({
   declarations: [
     ServiceListComponent,
-    ServiceViewComponent
+    ServiceViewComponent,
+    ServiceCardComponent
   ],
   imports: [
     CommonModule,
