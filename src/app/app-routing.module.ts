@@ -5,6 +5,7 @@ import { SingUpComponent } from './components/sing-up/sing-up.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { FooterComponent } from './layout/footer/footer.component';
+import { authGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   { path: "", component: SingInComponent },
@@ -22,6 +23,12 @@ const routes: Routes = [
     path: 'services',
     loadChildren: () => import('./service-one-services/service-one-services-routing.module').then(m => m.ServiceOneServicesRoutingModule)
   },
+  {
+    path: 'subscription',
+    // canActivate: [authGuard],
+    loadChildren: () => import('./subscription/subscription.module').then(m => m.SubscriptionModule)
+  },
+  { path: '**', redirectTo: 'sign-in' },
 ];
 
 @NgModule({

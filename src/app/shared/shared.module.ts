@@ -6,10 +6,12 @@ import { ToastComponent } from './toast/toast.component';
 
 
 
+
 @NgModule({
   declarations: [
-  
-    ToastComponent
+
+    ToastComponent,
+
   ],
   imports: [
     CommonModule,

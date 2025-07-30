@@ -1,10 +1,7 @@
 import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
-import { BackendService } from './../../services/backend.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SaveForm } from '../../models/save-form';
-import { IUser } from '../../models/user-details';
 
 @Component({
   selector: 'app-sing-in',
@@ -30,17 +27,24 @@ export class SingInComponent implements OnInit {
       console.log('Form Data:', this.signInForm.value);
       this._authService
         .singIn(this.signInForm.getRawValue())
-        .subscribe((user: IUser) => {
+        .subscribe((user: any) => {
           console.log("user", user);
+          localStorage.setItem("token", user.token);
 
-          this._authService.userDetails = { userName: this.signInForm.getRawValue()["userName"], ...user };
-          this._authService.userDetails = { ...this._authService.userDetails, ...user };
+          // this._authService.userDetails = { userName: this.signInForm.getRawValue()["userName"], ...user };
+          const userInitialDetails  = this._authService.userDetails;
+          userInitialDetails.navigation.signIn = false;
+
+          this._authService.userDetails = {
+            ...userInitialDetails,
+            ...user,
+            userName: this.signInForm.getRawValue()["userName"],
+            isLoggedIn: true,
+          };
           this._authService.token = user.token;
-          this._router.navigate(['/profile'], { queryParams: { id: this.signInForm.getRawValue()["userName"] } });
+          this._router.navigate(['/profile']);
 
-        })
-
-
+        });
     }
   }
 

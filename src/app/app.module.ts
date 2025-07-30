@@ -13,6 +13,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceOneServicesModule } from './service-one-services/service-one-services.module';
 import { AuthService } from './services/auth.service';
 import { ToastComponent } from './shared/toast/toast.component';
+import { LoaderInterceptor } from './interceptor/loader.interceptor';
+import { LoaderComponent } from './shared/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { ToastComponent } from './shared/toast/toast.component';
     routingComponents,
     HeaderComponent,
     FooterComponent,
-    ToastComponent
+    ToastComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,9 @@ import { ToastComponent } from './shared/toast/toast.component';
     ServiceOneServicesModule
   ],
   providers: [AuthService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true, }],
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

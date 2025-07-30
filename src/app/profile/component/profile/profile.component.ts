@@ -20,22 +20,22 @@ export class ProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder) {
     this.userForm = this.fb.group({
-      firstName: ['KAMAL', Validators.required],
-      lastName: ['Ruidas', Validators.required],
-      age: [30, [Validators.required, Validators.min(0)]],
+      name: ['Ruidas', Validators.required],
+      contact: ["9002888618", [Validators.required]],
       address: this.fb.group({
-        vill: ['Shyamsundarpur', Validators.required],
-        po: ['713141', Validators.required],
-        state: ['WB', Validators.required]
+        street: ['Shyamsundarpur', Validators.required],
+        city: ['Bardhaman', Validators.required],
+        state: ['WB', Validators.required],
+        zip: ['713141', Validators.required]
       })
     });
     this.userForm.disable();
   }
 
   ngOnInit(): void {
-    this._backendService.getData("/users").subscribe((data: any) => {
+    this._backendService.getData("/user").subscribe((data: any) => {
       console.log("data", data);
-
+      this.userForm.patchValue(data);
     })
   }
 
@@ -45,9 +45,8 @@ export class ProfileComponent implements OnInit {
     } else {
       console.log('Form is invalid');
     }
-
-
-    this.router.navigate(['/profile/update']);
+    // this.router.navigate(['/profile/update']);
+    this.router.navigate(['update'], { relativeTo: this.route });
   }
 
   public updateProfile(): void {

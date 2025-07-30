@@ -1,4 +1,6 @@
 <header class="shadow px-6 py-4 flex justify-between items-center">
     <div class="text-xl font-bold text-blue-600">SERVICE-ONE</div>
-    <div class="text-sm text-gray-600">Welcome, User ("-")</div>
+    <div class="text-sm text-gray-600">Welcome, {{userDetails?.userName}}</div>
+    <!-- <div class="text-sm text-gray-600">Welcome, {{_authService.userDetails$ |  async | json }}</div> -->
+
 </header>
