@@ -1,5 +1,7 @@
 export interface IUser {
     name: string,
+    isLoggedIn?: boolean,
+    userName?: string,
     token?: string,
     contact?: {
         email?: string,
@@ -7,12 +9,7 @@ export interface IUser {
         emergencyPhoneNo?: string
     },
     photoUrl?: string,
-    address?: {
-        street?: string,
-        city?: string,
-        state?: string,
-        zip?: string
-    },
+    address?: IUserAddress,
     servicesOffered?: [
         {
             serviceName?: string,
@@ -20,5 +17,26 @@ export interface IUser {
             maxPrice?: 0,
             description?: string
         }
-    ]
+    ],
+    navigation?: {
+        dashboard: boolean,
+        profile: boolean,
+        services: boolean,
+        signIn: boolean,
+        subscription: boolean
+    },
+    subscription?: {
+        name?: string | null,
+        durationInDays?: number | null,
+        maximumBooking?: number | null,
+        price?: number | null,
+        planSubscribed?: boolean
+    }
+}
+
+export interface IUserAddress {
+    street?: string,
+    city?: string,
+    state?: string,
+    zip?: string
 }

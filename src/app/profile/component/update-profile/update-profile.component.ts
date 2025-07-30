@@ -13,20 +13,17 @@ export class UpdateProfileComponent implements OnInit {
 
   public myDetails: any | undefined;
 
-
-
-
-  userForm: FormGroup;
-
-  constructor(private _dataStoreService: DataStoreService, private router: Router, private fb: FormBuilder) {
+  public userForm: FormGroup;
+  constructor(private _dataStoreService: DataStoreService, private router: Router, 
+      private fb: FormBuilder) {
     this.userForm = this.fb.group({
-      firstName: ['KAMAL', Validators.required],
-      lastName: ['Ruidas', Validators.required],
-      age: [30, [Validators.required, Validators.min(0)]],
+      name: ['', Validators.required],
+      contact: ["", [Validators.required]],
       address: this.fb.group({
-        vill: ['Shyamsundarpur', Validators.required],
-        po: ['713141', Validators.required],
-        state: ['WB', Validators.required]
+        street: ['', Validators.required],
+        city: ['', Validators.required],
+        state: ['', Validators.required],
+        zip: ['', Validators.required]
       })
     });
   }

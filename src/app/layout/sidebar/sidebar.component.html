@@ -1,6 +1,6 @@
 <aside class="w-64 min-w-64 max-w-64 bg-cyan-600 text-white h-full overflow-hidden">
   <nav class="flex flex-col space-y-2 p-4">
-    <a
+    <a *ngIf="navigationAccess?.dashboard"
       routerLink="/dashboard"
       routerLinkActive="bg-cyan-700 text-white font-semibold"
       [routerLinkActiveOptions]="{ exact: true }"
@@ -9,13 +9,15 @@
       Dashboard
     </a>
     <a
+    *ngIf="navigationAccess?.profile"
       routerLink="/profile"
       routerLinkActive="bg-cyan-700 text-white font-semibold"
       class="px-4 py-2 rounded-lg hover:bg-cyan-500 transition-all duration-200 whitespace-nowrap"
     >
       Profile
     </a>
-    <a
+    <a 
+    *ngIf="navigationAccess?.services"
       routerLink="/services"
       routerLinkActive="bg-cyan-700 text-white font-semibold"
       class="px-4 py-2 rounded-lg hover:bg-cyan-500 transition-all duration-200 whitespace-nowrap"
@@ -23,6 +25,7 @@
       Services
     </a>
     <a
+    *ngIf="navigationAccess?.signIn"
       routerLink="/sign-in"
       routerLinkActive="bg-cyan-700 text-white font-semibold"
       class="px-4 py-2 rounded-lg hover:bg-cyan-500 transition-all duration-200 whitespace-nowrap"
@@ -30,11 +33,20 @@
       Sing In
     </a>
     <a
+    *ngIf="navigationAccess?.signUp"
       routerLink="/sign-up"
       routerLinkActive="bg-cyan-700 text-white font-semibold"
       class="px-4 py-2 rounded-lg hover:bg-cyan-500 transition-all duration-200 whitespace-nowrap"
     >
       Sing Up
+    </a>
+    <a
+    *ngIf="navigationAccess?.subscription"
+      routerLink="/subscription"
+      routerLinkActive="bg-cyan-700 text-white font-semibold"
+      class="px-4 py-2 rounded-lg hover:bg-cyan-500 transition-all duration-200 whitespace-nowrap"
+    >
+      Subscription
     </a>
   </nav>
 </aside>
