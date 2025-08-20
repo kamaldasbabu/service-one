@@ -10,7 +10,8 @@ import { ToastService } from '../shared/toast.service';
 export class BackendService {
 
   // public apiUrl: string = "https://jsonplaceholder.typicode.com/";
-  public apiUrl: string = "http://localhost:8080/api";
+  // public apiUrl: string = "http://localhost:8080/api";
+  public apiUrl: string = "http://localhost:8080/api/todo";
   constructor(private http: HttpClient, private _toastService: ToastService) { }
 
   /**

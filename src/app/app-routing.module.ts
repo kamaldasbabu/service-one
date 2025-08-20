@@ -1,3 +1,4 @@
+import { MytaskModule } from './mytask/mytask.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SingInComponent } from './components/sing-in/sing-in.component';
@@ -27,6 +28,11 @@ const routes: Routes = [
     path: 'subscription',
     // canActivate: [authGuard],
     loadChildren: () => import('./subscription/subscription.module').then(m => m.SubscriptionModule)
+  },
+  {
+    path: 'task',
+    // canActivate: [authGuard],
+    loadChildren: () => import('./mytask/mytask.module').then(m => m.MytaskModule)
   },
   { path: '**', redirectTo: 'sign-in' },
 ];

@@ -1,0 +1,31 @@
+<div class="relative overflow-x-auto">
+
+    <table *ngIf="data && data.length > 0; else noData"
+        class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th *ngFor="let column of displayedColumnsName" scope="col" class="px-6 py-3">{{ column }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of data; index as i"
+                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                <!-- <td>Sl. No : {{i}}</td> -->
+                <td *ngFor="let column of displayedColumns" class="px-6 py-4">
+                    <ng-container *ngIf="column !== 'actions'; else actionCell">
+                        {{ row[column] }}
+                    </ng-container>
+                    <ng-template #actionCell>
+                        <button (click)="handleAction(row, tableName)" class="text-blue-600 hover:underline">
+                            Edit
+                        </button>
+                    </ng-template>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ng-template #noData>
+        <p>No data to display.</p>
+    </ng-template>
+</div>

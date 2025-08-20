@@ -1,4 +1,4 @@
-<aside class="w-64 min-w-64 max-w-64 bg-cyan-600 text-white h-full overflow-hidden">
+<aside class="w-50 min-w-50 max-w-60 bg-cyan-600 text-white h-full overflow-hidden">
   <nav class="flex flex-col space-y-2 p-4">
     <a *ngIf="navigationAccess?.dashboard"
       routerLink="/dashboard"
@@ -47,6 +47,13 @@
       class="px-4 py-2 rounded-lg hover:bg-cyan-500 transition-all duration-200 whitespace-nowrap"
     >
       Subscription
+    </a>
+    <a
+      routerLink="/task"
+      routerLinkActive="bg-cyan-700 text-white font-semibold"
+      class="px-4 py-2 rounded-lg hover:bg-cyan-500 transition-all duration-200 whitespace-nowrap"
+    >
+      Task
     </a>
   </nav>
 </aside>

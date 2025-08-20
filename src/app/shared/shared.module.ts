@@ -1,18 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { SharedRoutingModule } from './shared-routing.module';
-import { ToastComponent } from './toast/toast.component';
+import { ViewTableComponent } from './view-table/view-table.component';
 
 
 
 
 @NgModule({
-  declarations: [
-
-    ToastComponent,
-
-  ],
+  declarations: [],
   imports: [
     CommonModule,
     SharedRoutingModule
